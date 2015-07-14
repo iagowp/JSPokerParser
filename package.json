@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/iagowp/JSPokerParser/issues"
   },
-  "homepage": "https://github.com/iagowp/JSPokerParser"
+  "homepage": "https://github.com/iagowp/JSPokerParser",
+  "dependencies": {
+    "jquery": "^2.1.4"
+  }
 }

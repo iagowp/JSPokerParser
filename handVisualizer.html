@@ -6,16 +6,28 @@
   <body>
     <h1>Paste your hand history here</h1>
     <textarea id="hand"></textarea>
-    <button onclick="handParser(document.getElementById('hand').value);">
+    <button onclick="visualize(handParser(document.getElementById('hand').value));">
       Submit
     </button>
     <script src="parser.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script>
-      var visalize = function(parsedHand){
-        var container = document.createElement('section');
+    var visualize = function(parsedHand){
 
-        document.body.appendChild(container);
-      };
+      var $container = $("<section>");
+      var $players = $("<ul>", {id: "players"});
+      var $player;
+
+      for(var i = 0; i < parsedHand.players.length; i++){
+        console.log(parsedHand.players[i])
+        $player = $("<li>");
+        $player.html(parsedHand.players[i][0] + ": " + parsedHand.players[i][1]);
+        $players.append($player);
+      }
+
+      $container.append($players);
+      $("body").append($container);
+    };
     </script>
   </body>
 </html>
