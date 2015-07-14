@@ -1,4 +1,4 @@
-exports.handParser = function(handHistory){
+var handParser = function(handHistory){
   // object with all the relevant info to be displayed
   var parsedHand = {};
   parsedHand.platforms = "";
@@ -106,3 +106,5 @@ exports.handParser = function(handHistory){
   }
   return parsedHand;
 }
+
+exports.handParser = handParser;

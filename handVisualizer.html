@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hand Visualizer</title>
+  </head>
+  <body>
+    <h1>Paste your hand history here</h1>
+    <textarea id="hand"></textarea>
+    <button onclick="handParser(document.getElementById('hand').value);">
+      Submit
+    </button>
+    <script src="parser.js"></script>
+    <script>
+      var visalize = function(parsedHand){
+        var container = document.createElement('section');
+
+        document.body.appendChild(container);
+      };
+    </script>
+  </body>
+</html>
