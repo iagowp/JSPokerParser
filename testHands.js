@@ -1,5 +1,6 @@
 exports.testHands = [];
 
+// pokerstars, holdem, tournament, 6 players, portuguese, flop, hand available
 exports.testHands.push("Mão PokerStars #137737997245: Torneio #1270291825, 4500+500 Hold'em No Limit - Nível I (10/20) - 2015/07/07 16:42:52 ET \n" +
 "Mesa '1270291825 1' 6-max Lugar #1 é o botão \n" +
 "Lugar 1: iagowp (500 em fichas) \n" +
@@ -7,7 +8,7 @@ exports.testHands.push("Mão PokerStars #137737997245: Torneio #1270291825, 4500
 "Lugar 3: paluik (500 em fichas) \n" +
 "Lugar 4: INDIA598 (500 em fichas) está sit out \n" +
 "Lugar 5: JACOPO70 (500 em fichas) \n" +
-"Lugar 6: skat=hinni1 (500 em fichas) \n" +
+"Lugar 6: skat=hinni1 (500, em fichas) \n" +
 "iagowp: coloca ante 2 \n" +
 "JFDX7WC: coloca ante 2 \n" +
 "paluik: coloca ante 2 \n" +
@@ -42,6 +43,7 @@ exports.testHands.push("Mão PokerStars #137737997245: Torneio #1270291825, 4500
 "Lugar 5: JACOPO70 desistiu antes Flop (não apostou) \n" +
 "Lugar 6: skat=hinni1 desistiu antes Flop (não apostou)");
 
+// pokerstars, holdem, tournament, 2 players, portuguese, turn, no-hand available
 exports.testHands.push("Mão PokerStars #137738351488: Torneio #1270291825, 4500+500 Hold'em No Limit - Nível IV (30/60) - 2015/07/07 16:49:31 ET  \n" +
 "Mesa '1270291825 1' 6-max Lugar #2 é o botão \n" +
 "Lugar 2: JFDX7WC (1140 em fichas)  \n" +

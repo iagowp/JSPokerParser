@@ -19,13 +19,23 @@
       var $player;
 
       for(var i = 0; i < parsedHand.players.length; i++){
-        console.log(parsedHand.players[i])
         $player = $("<li>");
         $player.html(parsedHand.players[i][0] + ": " + parsedHand.players[i][1]);
         $players.append($player);
       }
 
       $container.append($players);
+
+      $container.append("<p>Mão</p>");
+
+      // actions preflop
+      var actions = "";
+      for(var i = 0; i < parsedHand.preFlopActions.length){
+        actions += parsedHand.preFlopActions[i] + ", ";
+      }
+
+      $container.append("<div class'hand'>" + parsedHand.hands[0] + "</div>");
+
       $("body").append($container);
     };
     </script>

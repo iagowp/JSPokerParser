@@ -43,6 +43,7 @@ var handParser = function(handHistory){
     row++;
   }
 
+  // need to be prepared for hand history where no hand is known
   var ownHand = handHistory[++row].split('[');
   ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
 
