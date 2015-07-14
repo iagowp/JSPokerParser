@@ -1,18 +1,30 @@
 exports.handParser = function(handHistory){
   // object with all the relevant info to be displayed
   var parsedHand = {};
+  parsedHand.platforms = "";
+  parsedHand.gameStyle = "";
+  parsedHand.players = [];
+  parsedHand.hands = [];
+  parsedHand.preFlopActions = [];
+  parsedHand.table = [];
+  parsedHand.flop = [];
+  parsedHand.flopActions = [];
+  parsedHand.turn = '';
+  parsedHand.turnActions = [];
+  parsedHand.river = '';
+  parsedHand.riverActions = '';
 
-  handHistory = handHistory.split("/n");
+  handHistory = handHistory.split("\n");
   metaHand = handHistory[0];
-  // prepare for other platforms
+
+  // need to prepare for other platforms
   if(metaHand.indexOf('PokerStars') !== -1) parsedHand.platforms = "PS";
-  // prepare for different styles
+  // need prepare for different styles
   parsedHand.gameStyle = metaHand.indexOf("Hold'em No Limit") != -1 ? "Hold'em No Limit" : false;
 
   var row = 2;
 
-  parsedHand.players =[];
-  // create a new function for this
+  // need to create a new function for this
   while( handHistory[row].indexOf('Lugar ') === 0 ){
     var endOfNumber = handHistory[row].indexOf(' em fichas');
     var numIndex = endOfNumber;
@@ -34,12 +46,13 @@ exports.handParser = function(handHistory){
   var ownHand = handHistory[++row].split('[');
   ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
 
-  parsedHand.hands = [ownHand];
+  parsedHand.hands.push(ownHand);
 
   // todo: check if there are other hands available
 
   //advance to the next event
   while( handHistory[row].indexOf("*** ") !== 0 ){
+    parsedHand.preFlopActions.push(handHistory[row]);
     row++;
   }
 
@@ -79,7 +92,5 @@ exports.handParser = function(handHistory){
     }
 
   }
-  
-
   return parsedHand;
 }
