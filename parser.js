@@ -12,7 +12,7 @@ exports.handParser = function(handHistory){
   parsedHand.turn = '';
   parsedHand.turnActions = [];
   parsedHand.river = '';
-  parsedHand.riverActions = '';
+  parsedHand.riverActions = [];
 
   handHistory = handHistory.split("\n");
   metaHand = handHistory[0];
@@ -58,6 +58,7 @@ exports.handParser = function(handHistory){
 
   //check if there's a FLOP
   if(handHistory[row].indexOf("FLOP") !== -1){
+    //get the FLOP cards
     parsedHand.flop = handHistory[row].split('[');
     parsedHand.flop = parsedHand.flop[1].substring(0, 8).split(" ");
     parsedHand.table = parsedHand.flop.slice();
@@ -65,11 +66,13 @@ exports.handParser = function(handHistory){
 
     // advance to the next event
     while( handHistory[row].indexOf("*** ") !== 0 ){
+      parsedHand.flopActions.push(handHistory[row]);
       row++;
     }
 
     // check if there's a TURN
     if( handHistory[row].indexOf("TURN") === 4){
+      //get the TURN card
       parsedHand.turn = handHistory[row].split('[');
       parsedHand.turn = parsedHand.turn[2].substring(0, 2);
       parsedHand.table.push(parsedHand.turn);
@@ -78,15 +81,24 @@ exports.handParser = function(handHistory){
 
       // advance to the next event
       while( handHistory[row].indexOf("*** ") !== 0 ){
+        parsedHand.turnActions.push(handHistory[row]);
         row++;
       }
 
       // check if there's a RIVER
       if( handHistory[row].indexOf("RIVER") === 4){
+        //get the RIVER card
         parsedHand.river = handHistory[row].split('[');
         parsedHand.river = parsedHand.river[2].substring(0, 2);
         parsedHand.table.push(parsedHand.river);
         row++;
+
+        // advance to the next event
+        while( handHistory[row].indexOf("*** ") !== 0 ){
+          parsedHand.riverActions.push(handHistory[row]);
+          row++;
+        }
+
       }
 
     }
