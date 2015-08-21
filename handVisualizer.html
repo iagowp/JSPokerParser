@@ -28,13 +28,15 @@
 
       $container.append("<p>Mão</p>");
 
+      $container.append("<div class'hand'>" + parsedHand.hands[0] + "</div>");
+
       // actions preflop
       var actions = "";
       for(var i = 0; i < parsedHand.preFlopActions.length){
         actions += parsedHand.preFlopActions[i] + ", ";
       }
 
-      $container.append("<div class'hand'>" + parsedHand.hands[0] + "</div>");
+      $container.append("<div>" + actions + "</div>");
 
       $("body").append($container);
     };
