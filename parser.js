@@ -18,6 +18,8 @@ var handParser = function(handHistory){
   if(metaHand.indexOf('PokerStars') !== -1) parsedHand.platforms = "PS";
   // need prepare for different styles
   parsedHand.gameStyle = metaHand.indexOf("Hold'em No Limit") !== -1 ? "Hold'em No Limit" : false;
+  // need to improve this part
+  parsedHand.gameStyle = parsedHand.gameStyle || "Omaha Pot Limit";
   parsedHand.language = handHistory[1].indexOf("Mesa") === 0 ? 'pt' : 'en'
 
   var row = 2;
