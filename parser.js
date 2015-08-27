@@ -51,7 +51,12 @@ var handParser = function(handHistory){
 
     // need to be prepared for hand history where no hand is known
     var ownHand = handHistory[++row].split('[');
-    ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
+    
+    if(parsedHand.gameStyle == 'Omaha Pot Limit'){
+      ownHand = ownHand[ownHand.length-1].substring(0, 11).split(" ");
+    } else {
+      ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
+    }
 
     parsedHand.hands.push(ownHand);
     row++;
@@ -193,6 +198,8 @@ var handParser = function(handHistory){
 
     }
   }
+
+  console.log(parsedHand);
   return parsedHand;
 }
 

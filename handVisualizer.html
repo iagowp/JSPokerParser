@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <title>Hand Visualizer</title>
   </head>
   <body>
@@ -18,25 +19,102 @@
       var $players = $("<ul>", {id: "players"});
       var $player;
 
+
+      var $preflop = $("<ul>", {id: "preflop"});
+      var $preflopPlayer;
+
+      var $flop = $("<ul>", {id: "flop"});
+      var $flopActions;
+      var $flopCard;
+
+      var $turn = $("<ul>", {id: "turn"});
+      var $turnCard = $("<li>").html(parsedHand.flop[0]+parsedHand.flop[1]+parsedHand.flop[2]+parsedHand.turn);
+
+      $turn.append($turnCard);
+
+      var $turnActions = $("<ul>", {id: "turnActions"});
+      var $turnAction;
+
+
+      var $river = $("<ul>", {id: "river"});
+      var $riverCard = $("<li>").html(parsedHand.flop[0]+parsedHand.flop[1]+parsedHand.flop[2]+parsedHand.river);
+
+      $river.append($riverCard);
+
+      var $riverActions = $("<ul>", {id: "riverActions"});
+      var $riverAction;
+
       for(var i = 0; i < parsedHand.players.length; i++){
         $player = $("<li>");
         $player.html(parsedHand.players[i][0] + ": " + parsedHand.players[i][1]);
         $players.append($player);
       }
 
-      $container.append($players);
 
-      $container.append("<p>Mão</p>");
-
-      $container.append("<div class'hand'>" + parsedHand.hands[0] + "</div>");
-
-      // actions preflop
-      var actions = "";
-      for(var i = 0; i < parsedHand.preFlopActions.length){
-        actions += parsedHand.preFlopActions[i] + ", ";
+      for(var j = 0; j < parsedHand.preFlopActions.length; j++){
+        $preflopPlayer = $("<li>");
+        $preflopPlayer.html(parsedHand.preFlopActions[j]);
+        $preflop.append($preflopPlayer);
       }
 
-      $container.append("<div>" + actions + "</div>");
+
+      for(var j = 0; j < parsedHand.flop.length; j++){
+        $flopCard = $("<li>");
+        $flopCard.html(parsedHand.flop[j]);
+        $flop.append($flopCard);
+      }
+
+      for(var j = 0; j < parsedHand.flopActions.length; j++){
+        $flopCard = $("<li>");
+        $flopCard.html(parsedHand.flopActions[j]);
+        $flop.append($flopCard);
+      }
+
+      for(var j = 0; j < parsedHand.turnActions.length; j++){
+        $turnAction = $("<li>");
+        $turnAction.html(parsedHand.turnActions[j]);
+        $turn.append($turnAction);
+      }
+
+
+       for(var j = 0; j < parsedHand.riverActions.length; j++){
+        $riverAction = $("<li>");
+        $riverAction.html(parsedHand.riverActions[j]);
+        $river.append($riverAction);
+      }
+
+      $turn.append($turnActions);
+
+      $preflop.prepend('<h2>Preflop</h2>');
+      $players.prepend('<h2>Jogadores</h2>');
+      $flop.prepend('<h2>Flop</h2>');
+      $turn.prepend('<h2>Turn</h2>');
+      $river.prepend('<h2>River</h2>');
+
+      $container.append($flop);
+      $container.append($flop);
+      $container.append($players);
+      $container.append($preflop);
+      $container.append($turn);
+      $container.append($river);
+
+      $container.append("<h2>Mão</h2>");
+
+
+      if(parsedHand.gameStyle == "Hold'em No Limit"){
+        $container.append("<div class'hand'>" + parsedHand.hands[0][0] + parsedHand.hands[0][1] + "</div>");
+      } else {
+        $container.append("<div class'hand'>" + parsedHand.hands[0][0] + parsedHand.hands[0][1] + parsedHand.hands[0][2] + parsedHand.hands[0][3]+"</div>");
+      }
+
+
+      // // actions preflop
+      // var actions = "";
+      // for(var i = 0; i < parsedHand.preFlopActions.length; i++){
+      //   actions += parsedHand.preFlopActions[i] + ", ";
+      // }
+
+      // $container.append("<div>" + actions + "</div>");
 
       $("body").append($container);
     };
