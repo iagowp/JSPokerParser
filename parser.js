@@ -11,6 +11,17 @@ var handParser = function(handHistory){
   parsedHand.turnActions = [];
   parsedHand.riverActions = [];
 
+  // indexof is faster
+  // regex to search for a hand was run twice on the whole text
+  var runTwiceRegex = /Hand was run twice/ig;
+  parsedHand.runTwice = runTwiceRegex.test(handHistory);
+  // in case its a run it twice
+  if(parsedHand.runTwice){
+    parsedHand.secondFlop = [];
+    parsedHand.secondTurn = "";
+    parsedHand.secondRiver = "";
+  }
+
   handHistory = handHistory.split("\n");
   metaHand = handHistory[0];
 
@@ -49,19 +60,19 @@ var handParser = function(handHistory){
       row++;
     }
 
-    // need to be prepared for hand history where no hand is known
-    var ownHand = handHistory[++row].split('[');
-    
-    if(parsedHand.gameStyle == 'Omaha Pot Limit'){
-      ownHand = ownHand[ownHand.length-1].substring(0, 11).split(" ");
-    } else {
-      ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
+    // treating for when no hand is initially known
+    if(handHistory[row+1].indexOf('Dealt to') === 0){
+      var ownHand = handHistory[++row].split('[');
+      if(parsedHand.gameStyle == 'Omaha Pot Limit'){
+        ownHand = ownHand[ownHand.length-1].substring(0, 11).split(" ");
+      } else {
+        ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
+      }
+
+      parsedHand.hands.push(ownHand);
     }
-
-    parsedHand.hands.push(ownHand);
+    
     row++;
-
-    // todo: check if there are other hands available
 
     //advance to the next event
     while( handHistory[row].indexOf(" ") !== 0 && handHistory[row].indexOf("*** ") !== 0 ){
@@ -110,6 +121,29 @@ var handParser = function(handHistory){
             row++;
           }
 
+          // get the others if it was a run in twice
+          if(parsedHand.runTwice){
+            // check if there is a second flop
+            if(handHistory[row].indexOf("FLOP") !== -1){
+              parsedHand.secondFlop = handHistory[row].split('[');
+              parsedHand.secondFlop = parsedHand.secondFlop[1].substring(0, 8).split(" ");
+              row++;
+            }
+
+            // check if there is a second turn
+            if(handHistory[row].indexOf("TURN") !== -1){
+              //get the TURN card
+              parsedHand.secondTurn = handHistory[row].split('[');
+              parsedHand.secondTurn = parsedHand.secondTurn[2].substring(0, 2);
+              row++;
+            }
+
+            // doesnt need to check, there will always be a second river
+            parsedHand.secondRiver = handHistory[row].split('[');
+            parsedHand.secondRiver = parsedHand.secondRiver[2].substring(0, 2);
+            row++;
+
+          }
         }
       }
     }
@@ -199,7 +233,6 @@ var handParser = function(handHistory){
     }
   }
 
-  console.log(parsedHand);
   return parsedHand;
 }
 

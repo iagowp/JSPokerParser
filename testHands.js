@@ -273,3 +273,51 @@ exports.testHands.push("PokerStars Zoom Hand #139371653813:  Omaha Pot Limit ($1
 "Seat 4: ierdna folded before Flop (didn't bet)\n" +
 "Seat 5: DidYouLikeIt folded before Flop (didn't bet)\n" +
 "Seat 6: Roxie Hart showed [4s 5h 8c 4c] and lost with three of a kind, Fours");
+
+//pokerstars, holden, cash, 6 players, english, full runit twice, hand8
+exports.testHands.push("PokerStars Hand #139844690223:  Hold'em No Limit ($2.50/$5.00 USD) - 2015/08/24 16:08:16 BRT [2015/08/24 15:08:16 ET] \n" +
+"Table 'Lambda Velorum' 6-max Seat #1 is the button\n" +
+"Seat 1: Flufferd ($774.64 in chips) \n" +
+"Seat 2: Muladkhara ($529.54 in chips) \n" +
+"Seat 3: barrao ($513.38 in chips) \n" +
+"Seat 4: Mr.Flambe ($770.82 in chips) \n" +
+"Seat 5: mynameiskarl ($737.72 in chips) \n" +
+"Seat 6: u3meha ($496.37 in chips) \n" +
+"Muladkhara: posts small blind $2.50\n" +
+"barrao: posts big blind $5\n" +
+"*** HOLE CARDS ***\n" +
+"Mr.Flambe: folds \n" +
+"mynameiskarl: folds \n" +
+"u3meha: folds \n" +
+"Flufferd: raises $6.05 to $11.05\n" +
+"Muladkhara: calls $8.55\n" +
+"barrao: raises $36.24 to $47.29\n" +
+"Flufferd: raises $55.88 to $103.17\n" +
+"Muladkhara: folds \n" +
+"barrao: raises $410.21 to $513.38 and is all-in\n" +
+"Flufferd: calls $410.21\n" +
+"*** FIRST FLOP *** [3d 2h 7h]\n" +
+"*** FIRST TURN *** [3d 2h 7h] [6h]\n" +
+"*** FIRST RIVER *** [3d 2h 7h 6h] [9c]\n" +
+"*** SECOND FLOP *** [6d Qs 8d]\n" +
+"*** SECOND TURN *** [6d Qs 8d] [9d]\n" +
+"*** SECOND RIVER *** [6d Qs 8d 9d] [2d]\n" +
+"*** FIRST SHOW DOWN ***\n" +
+"barrao: shows [Js Jc] (a pair of Jacks)\n" +
+"Flufferd: mucks hand \n" +
+"barrao collected $517.51 from pot\n" +
+"*** SECOND SHOW DOWN ***\n" +
+"barrao: shows [Js Jc] (a pair of Jacks)\n" +
+"Flufferd: mucks hand \n" +
+"barrao collected $517.50 from pot\n" +
+"*** SUMMARY ***\n" +
+"Total pot $1037.81 | Rake $2.80 \n" +
+"Hand was run twice\n" +
+"FIRST Board [3d 2h 7h 6h 9c]\n" +
+"SECOND Board [6d Qs 8d 9d 2d]\n" +
+"Seat 1: Flufferd (button) mucked\n" +
+"Seat 2: Muladkhara (small blind) folded before Flop\n" +
+"Seat 3: barrao (big blind) showed [Js Jc] and won ($517.51) with a pair of Jacks, and won ($517.50) with a pair of Jacks\n" +
+"Seat 4: Mr.Flambe folded before Flop (didn't bet)\n" +
+"Seat 5: mynameiskarl folded before Flop (didn't bet)\n" +
+"Seat 6: u3meha folded before Flop (didn't bet)");

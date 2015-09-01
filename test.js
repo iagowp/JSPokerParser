@@ -14,6 +14,9 @@ describe("About Expects", function() {
   var hand6 = handParser(testHands[5]);
   var hand7 = handParser(testHands[6]);
 
+  // run it twice
+  var hand8 = handParser(testHands[7]);
+
   it("should learn where the hand came from" ,function(){
     expect(hand1.platforms === "PS").to.be.true;
     expect(hand3.platforms === "PS").to.be.true;
@@ -56,6 +59,7 @@ describe("About Expects", function() {
     expect(hand5.players[0][1]).to.equal('3370');
     expect(hand6.players[5][1]).to.equal('$105.05');
     expect(hand7.players[2][1]).to.equal('$200');
+    expect(hand8.players[2][1]).to.equal('$513.38');
   });
 
   it("should store the pre flop actions", function(){
@@ -68,6 +72,7 @@ describe("About Expects", function() {
     expect(hand6.preFlopActions[0]).to.eql("10K-in-Clay: posts small blind $1");
     expect(hand6.preFlopActions[2]).to.eql("Runchuks: folds ");
     expect(hand7.preFlopActions[4]).to.eql("Roxie Hart: raises $4 to $6");
+    expect(hand8.preFlopActions[11]).to.eql("Flufferd: calls $410.21");
   });
 
   it("should learn the flop cards" ,function(){
@@ -78,6 +83,7 @@ describe("About Expects", function() {
     expect(hand5.flop).to.eql(["3h", "Th", "Jc"]);
     expect(hand6.flop).to.eql([]);
     expect(hand7.flop).to.eql(["2s", "5s", "4d"]);
+    expect(hand8.flop).to.eql(["3d", "2h", "7h"]);
   });
 
   it("should store the flop actions", function(){
@@ -85,6 +91,7 @@ describe("About Expects", function() {
     expect(hand4.flopActions[0]).to.be.undefined;
     expect(hand5.flopActions[1]).to.eql("konnh4nd: bets 68");
     expect(hand7.flopActions[2]).to.eql("lipreTTT: raises $32.42 to $42.42");
+    expect(hand8.flopActions[2]).to.be.undefined;
   });
 
   it("should learn the turn card", function(){
@@ -93,6 +100,7 @@ describe("About Expects", function() {
     expect(hand3.turn).to.equal("Js");
     expect(hand5.turn).to.equal("8d");
     expect(hand7.turn).to.equal("Ks");
+    expect(hand8.turn).to.equal("6h");
   });
 
   it("should store the turn actions", function(){
@@ -106,6 +114,7 @@ describe("About Expects", function() {
     expect(hand3.river).to.eql("Qs");
     expect(hand5.river).to.eql("6d");
     expect(hand7.river).to.eql("Ac");
+    expect(hand8.river).to.eql("9c");
   });
 
   it("should store the river actions", function(){
@@ -113,6 +122,29 @@ describe("About Expects", function() {
     expect(hand3.riverActions[0]).to.be.undefined;
     expect(hand5.riverActions[0]).to.eql("jordanblg: bets 140");
     expect(hand7.riverActions[0]).to.be.undefined;
+    expect(hand8.riverActions[0]).to.be.undefined;
+  });
+
+  it("should know if the hand was run twice", function(){
+    expect(hand1.runTwice).to.be.false
+    expect(hand4.runTwice).to.be.false
+    expect(hand7.runTwice).to.be.false
+    expect(hand8.runTwice).to.be.true
+  });
+
+  it("should learn the second flop cards", function(){
+    expect(hand1.secondFlop).to.be.undefined;
+    expect(hand8.secondFlop).to.eql(["6d", "Qs", "8d"]);
+  });
+
+  it("should learn the second turn cards", function(){
+    expect(hand1.secondTurn).to.be.undefined;
+    expect(hand8.secondTurn).to.eql('9d');
+  });
+
+  it("should learn the second river cards", function(){
+    expect(hand1.secondRiver).to.be.undefined;
+    expect(hand8.secondRiver).to.eql('2d');
   });
 
 });
