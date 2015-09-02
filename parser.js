@@ -2,6 +2,7 @@ var handParser = function(handHistory){
   // object with all the relevant info to be displayed
   var parsedHand = {};
   parsedHand.platforms = parsedHand.gameStyle = parsedHand.language = parsedHand.turn = parsedHand.river = "";
+  // todo: refactor players to use objects called players inside the array. object should contain name, chips properties and hand if available
   parsedHand.players = [];
   parsedHand.hands = [];
   parsedHand.preFlopActions = [];
@@ -23,7 +24,7 @@ var handParser = function(handHistory){
   }
 
   handHistory = handHistory.split("\n");
-  metaHand = handHistory[0];
+  var metaHand = handHistory[0];
 
   // need to prepare for other platforms
   if(metaHand.indexOf('PokerStars') !== -1) parsedHand.platforms = "PS";
