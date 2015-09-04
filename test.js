@@ -1,6 +1,8 @@
 var expect = require('chai').expect;
-var handParser = require('./parser.js').handParser;
+var handParser = require('./parser').handParser;
 var testHands = require('./testHands').testHands;
+
+var createParsedHand = require('./parser').createParsedHand;
 
 describe("About Expects", function() {
 
@@ -60,6 +62,13 @@ describe("About Expects", function() {
     expect(hand6.players[5][1]).to.equal('$105.05');
     expect(hand7.players[2][1]).to.equal('$200');
     expect(hand8.players[2][1]).to.equal('$513.38');
+  });
+
+  it("should learn the guy's hand if its available", function(){
+    expect(hand3.ownHand).to.eql(["Ad","Ts"]);
+    expect(hand5.ownHand).to.eql(["Ad","2d"]);
+    expect(hand6.ownHand).to.eql(["6h", "Ad", "4s", "5d"]);
+    expect(hand8.ownHand).to.eql([]);
   });
 
   it("should store the pre flop actions", function(){
@@ -126,10 +135,10 @@ describe("About Expects", function() {
   });
 
   it("should know if the hand was run twice", function(){
-    expect(hand1.runTwice).to.be.false
-    expect(hand4.runTwice).to.be.false
-    expect(hand7.runTwice).to.be.false
-    expect(hand8.runTwice).to.be.true
+    expect(hand1.runTwice).to.be.false;
+    expect(hand4.runTwice).to.be.false;
+    expect(hand7.runTwice).to.be.false;
+    expect(hand8.runTwice).to.be.true;
   });
 
   it("should learn the second flop cards", function(){
@@ -147,4 +156,26 @@ describe("About Expects", function() {
     expect(hand8.secondRiver).to.eql('2d');
   });
 
+  it("should create parsedHand", function(){
+    var parsed = createParsedHand();
+
+    expect(parsed).to.be.an('object');
+    expect(parsed).to.eql({
+      platforms: '',
+      gameStyle: '',
+      language: '',
+      turn: '',
+      river: '',
+      players: [],
+      ownHand: [],
+      preFlopActions: [],
+      table: [],
+      flop: [],
+      flopActions: [],
+      turnActions: [],
+      riverActions: []
+    });
+  });
+
+  
 });

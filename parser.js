@@ -1,4 +1,4 @@
-var handParser = function(handHistory){
+var createParsedHand = function(){
   // object with all the relevant info to be displayed
   var parsedHand = {};
   parsedHand.platforms = parsedHand.gameStyle = parsedHand.language = parsedHand.turn = parsedHand.river = "";
@@ -11,6 +11,12 @@ var handParser = function(handHistory){
   parsedHand.flopActions = [];
   parsedHand.turnActions = [];
   parsedHand.riverActions = [];
+  return parsedHand;
+};
+
+var handParser = function(handHistory){
+  
+  var parsedHand = createParsedHand();
 
   // indexof is faster
   // regex to search for a hand was run twice on the whole text
@@ -242,4 +248,6 @@ var handParser = function(handHistory){
   return parsedHand;
 }
 
+
+exports.createParsedHand = createParsedHand;
 exports.handParser = handParser;
