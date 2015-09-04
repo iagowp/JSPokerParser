@@ -4,7 +4,7 @@ var handParser = function(handHistory){
   parsedHand.platforms = parsedHand.gameStyle = parsedHand.language = parsedHand.turn = parsedHand.river = "";
   // todo: refactor players to use objects called players inside the array. object should contain name, chips properties and hand if available
   parsedHand.players = [];
-  parsedHand.hands = [];
+  parsedHand.ownHand = [];
   parsedHand.preFlopActions = [];
   parsedHand.table = [];
   parsedHand.flop = [];
@@ -65,12 +65,10 @@ var handParser = function(handHistory){
     if(handHistory[row+1].indexOf('Dealt to') === 0){
       var ownHand = handHistory[++row].split('[');
       if(parsedHand.gameStyle == 'Omaha Pot Limit'){
-        ownHand = ownHand[ownHand.length-1].substring(0, 11).split(" ");
+        parsedHand.ownHand = ownHand[ownHand.length-1].substring(0, 11).split(" ");
       } else {
-        ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
+        parsedHand.ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
       }
-
-      parsedHand.hands.push(ownHand);
     }
     
     row++;
@@ -171,10 +169,17 @@ var handParser = function(handHistory){
     }
 
     // need to be prepared for hand history where no hand is known
-    var ownHand = handHistory[++row].split('[');
-    ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
 
-    parsedHand.hands.push(ownHand);
+    // this part is not correct TODO
+
+    // var ownHand = handHistory[++row].split('[');
+    // ownHand = ownHand[ownHand.length-1].substring(0, 5).split(" ");
+
+    // parsedHand.hands.push(ownHand);
+
+    // filling in
+    row++;
+    // delete ^^
 
     // todo: check if there are other hands available
 
