@@ -14,10 +14,7 @@ var createParsedHand = function(){
   return parsedHand;
 };
 
-var handParser = function(handHistory){
-  
-  var parsedHand = createParsedHand();
-
+var checkRunTwice = function(parsedHand, handHistory){
   // indexof is faster
   // regex to search for a hand was run twice on the whole text
   var runTwiceRegex = /Hand was run twice/ig;
@@ -28,6 +25,15 @@ var handParser = function(handHistory){
     parsedHand.secondTurn = "";
     parsedHand.secondRiver = "";
   }
+
+};
+
+var handParser = function(handHistory){
+  
+  var parsedHand = createParsedHand();
+
+  checkRunTwice(parsedHand, handHistory);
+  
 
   handHistory = handHistory.split("\n");
   var metaHand = handHistory[0];
@@ -250,4 +256,5 @@ var handParser = function(handHistory){
 
 
 exports.createParsedHand = createParsedHand;
+exports.checkRunTwice = checkRunTwice;
 exports.handParser = handParser;

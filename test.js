@@ -3,8 +3,9 @@ var handParser = require('./parser').handParser;
 var testHands = require('./testHands').testHands;
 
 var createParsedHand = require('./parser').createParsedHand;
+var checkRunTwice = require('./parser').checkRunTwice;
 
-describe("About Expects", function() {
+describe("Hand Parser", function() {
 
   var hand1 = handParser(testHands[0]);
   var hand2 = handParser(testHands[1]);
@@ -156,26 +157,65 @@ describe("About Expects", function() {
     expect(hand8.secondRiver).to.eql('2d');
   });
 
-  it("should create parsedHand", function(){
-    var parsed = createParsedHand();
+  
 
-    expect(parsed).to.be.an('object');
-    expect(parsed).to.eql({
-      platforms: '',
-      gameStyle: '',
-      language: '',
-      turn: '',
-      river: '',
-      players: [],
-      ownHand: [],
-      preFlopActions: [],
-      table: [],
-      flop: [],
-      flopActions: [],
-      turnActions: [],
-      riverActions: []
+  describe("Initial Configs", function(){
+
+    it("should create parsedHand", function(){
+      var parsed = createParsedHand();
+      expect(createParsedHand).to.be.a('function');
+      expect(parsed).to.be.an('object');
+      expect(parsed).to.eql({
+        platforms: '',
+        gameStyle: '',
+        language: '',
+        turn: '',
+        river: '',
+        players: [],
+        ownHand: [],
+        preFlopActions: [],
+        table: [],
+        flop: [],
+        flopActions: [],
+        turnActions: [],
+        riverActions: []
+      });
     });
+
+    describe("Run Twice Setup", function(){
+      it("should be function", function(){
+        expect(checkRunTwice).to.be.a('function');
+      });
+
+      it("should not config variables if the hand wasnt ran twice", function(){
+        var parsed = createParsedHand();
+        checkRunTwice(parsed, testHands[6]);
+        expect(parsed).to.have.ownProperty('runTwice');
+        expect(parsed.runTwice).to.be.false;
+        expect(parsed).to.not.have.ownProperty('secondFlop');
+        expect(parsed).to.not.have.ownProperty('secondTurn');
+        expect(parsed).to.not.have.ownProperty('secondRiver');
+      });
+
+      it("should config variables if the hand was ran twice", function(){
+        var parsed = createParsedHand();
+        checkRunTwice(parsed, testHands[7]);
+        expect(parsed).to.have.ownProperty('runTwice');
+        expect(parsed.runTwice).to.be.true;
+        expect(parsed).to.have.ownProperty('secondFlop');
+        expect(parsed.secondFlop).to.eql([]);
+        expect(parsed).to.have.ownProperty('secondTurn');
+        expect(parsed.secondTurn).to.eql('');
+        expect(parsed).to.have.ownProperty('secondRiver');
+        expect(parsed.secondRiver).to.eql('');
+      });
+
+    });
+
+
+
+
   });
 
-  
 });
+
