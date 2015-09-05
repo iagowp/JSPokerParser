@@ -8,6 +8,7 @@ var createParsedHand = require('./parser').createParsedHand;
 var checkRunTwice = require('./parser').checkRunTwice;
 var prepareHandHistory = require('./parser').prepareHandHistory;
 var getHandIdentifier = require('./parser').getHandIdentifier;
+var getHandStyle = require('./parser').getHandStyle;
 
 describe("Hand Parser", function() {
 
@@ -165,6 +166,10 @@ describe("Hand Parser", function() {
 
   describe("Initial Configs", function(){
 
+    xit("should initialize config", function(){
+      // mock functions and test if they were invoked
+    });
+
     it("should create parsedHand", function(){
       var parsed = createParsedHand();
       expect(createParsedHand).to.be.a('function');
@@ -195,10 +200,6 @@ describe("Hand Parser", function() {
         done();
       });
 
-    });
-
-    it("should get hand identifier", function(){
-      expect(getHandIdentifier(prepareHandHistory(testHands[3]))).to.eql("PokerStars Hand #129546885146: Tournament #1118959248, $10+$1 USD Hold'em No Limit - Level I (10/20) - 2015/01/29 12:15:12 ET")
     });
 
     describe("Run Twice Setup", function(){
@@ -233,4 +234,33 @@ describe("Hand Parser", function() {
 
   });
 
+  describe("Pre-Flop Parsing", function(){
+    it("should get hand identifier", function(){
+      expect(getHandIdentifier(prepareHandHistory(testHands[3]))).to.eql("PokerStars Hand #129546885146: Tournament #1118959248, $10+$1 USD Hold'em No Limit - Level I (10/20) - 2015/01/29 12:15:12 ET");
+    });
+
+    xit("should get hand style", function(){
+      expect();
+    });
+
+  });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
