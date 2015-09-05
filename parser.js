@@ -25,23 +25,29 @@ var checkRunTwice = function(parsedHand, handHistory){
     parsedHand.secondTurn = "";
     parsedHand.secondRiver = "";
   }
-
 };
 
-var handParser = function(handHistory){
-  
+var prepareHandHistory = function(handHistory){
+  return handHistory.split("\n");
+};
+
+var getHandIdentifier = function(handHistory){
+  return handHistory[0];
+};
+
+var handParser = function(handHistory){  
   var parsedHand = createParsedHand();
 
   checkRunTwice(parsedHand, handHistory);
   
+  handHistory = prepareHandHistory(handHistory);
 
-  handHistory = handHistory.split("\n");
-  var metaHand = handHistory[0];
+  var handIdentifier = getHandIdentifier(handHistory);
 
   // need to prepare for other platforms
-  if(metaHand.indexOf('PokerStars') !== -1) parsedHand.platforms = "PS";
+  if(handIdentifier.indexOf('PokerStars') !== -1) parsedHand.platforms = "PS";
   // need prepare for different styles
-  parsedHand.gameStyle = metaHand.indexOf("Hold'em No Limit") !== -1 ? "Hold'em No Limit" : false;
+  parsedHand.gameStyle = handIdentifier.indexOf("Hold'em No Limit") !== -1 ? "Hold'em No Limit" : false;
   // need to improve this part
   parsedHand.gameStyle = parsedHand.gameStyle || "Omaha Pot Limit";
   parsedHand.language = handHistory[1].indexOf("Mesa") === 0 ? 'pt' : 'en'
@@ -257,4 +263,6 @@ var handParser = function(handHistory){
 
 exports.createParsedHand = createParsedHand;
 exports.checkRunTwice = checkRunTwice;
+exports.prepareHandHistory = prepareHandHistory;
+exports.getHandIdentifier = getHandIdentifier;
 exports.handParser = handParser;

@@ -1,0 +1,39 @@
+PokerStars Zoom Hand #139371653813:  Omaha Pot Limit ($1/$2) - 2015/08/14 12:41:25 BRT [2015/08/14 11:41:25 ET]
+Table 'Diotima' 6-max Seat #1 is the button
+Seat 1: Master Swish ($103.60 in chips) 
+Seat 2: XMONEYMAKERT ($517.79 in chips) 
+Seat 3: lipreTTT ($200 in chips) 
+Seat 4: ierdna ($228.64 in chips) 
+Seat 5: DidYouLikeIt ($230.97 in chips) 
+Seat 6: Roxie Hart ($109.50 in chips) 
+XMONEYMAKERT: posts small blind $1
+lipreTTT: posts big blind $2
+*** HOLE CARDS ***
+Dealt to lipreTTT [6s 7c As 7h]
+ierdna: folds 
+DidYouLikeIt: folds 
+Roxie Hart: raises $4 to $6
+Master Swish: folds 
+XMONEYMAKERT: folds 
+lipreTTT: calls $4
+*** FLOP *** [2s 5s 4d]
+lipreTTT: checks 
+Roxie Hart: bets $10
+lipreTTT: raises $32.42 to $42.42
+Roxie Hart: raises $61.08 to $103.50 and is all-in
+lipreTTT: calls $61.08
+*** TURN *** [2s 5s 4d] [Ks]
+*** RIVER *** [2s 5s 4d Ks] [Ac]
+*** SHOW DOWN ***
+lipreTTT: shows [6s 7c As 7h] (a flush, Ace high)
+Roxie Hart: shows [4s 5h 8c 4c] (three of a kind, Fours)
+lipreTTT collected $217.20 from pot
+*** SUMMARY ***
+Total pot $220 | Rake $2.80 
+Board [2s 5s 4d Ks Ac]
+Seat 1: Master Swish (button) folded before Flop (didn't bet)
+Seat 2: XMONEYMAKERT (small blind) folded before Flop
+Seat 3: lipreTTT (big blind) showed [6s 7c As 7h] and won ($217.20) with a flush, Ace high
+Seat 4: ierdna folded before Flop (didn't bet)
+Seat 5: DidYouLikeIt folded before Flop (didn't bet)
+Seat 6: Roxie Hart showed [4s 5h 8c 4c] and lost with three of a kind, Fours

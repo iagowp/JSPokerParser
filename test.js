@@ -1,9 +1,13 @@
+var fs = require('fs');
+
 var expect = require('chai').expect;
 var handParser = require('./parser').handParser;
 var testHands = require('./testHands').testHands;
 
 var createParsedHand = require('./parser').createParsedHand;
 var checkRunTwice = require('./parser').checkRunTwice;
+var prepareHandHistory = require('./parser').prepareHandHistory;
+var getHandIdentifier = require('./parser').getHandIdentifier;
 
 describe("Hand Parser", function() {
 
@@ -182,6 +186,21 @@ describe("Hand Parser", function() {
       });
     });
 
+    it("should prepare hand history", function(done){
+      expect(prepareHandHistory).to.be.a('function');
+
+      fs.readFile('./testHand.txt', function(err, doc){
+        if(err) return done(err);
+        expect(prepareHandHistory(doc.toString())).to.eql(prepareHandHistory(testHands[6]));
+        done();
+      });
+
+    });
+
+    it("should get hand identifier", function(){
+      expect(getHandIdentifier(prepareHandHistory(testHands[3]))).to.eql("PokerStars Hand #129546885146: Tournament #1118959248, $10+$1 USD Hold'em No Limit - Level I (10/20) - 2015/01/29 12:15:12 ET")
+    });
+
     describe("Run Twice Setup", function(){
       it("should be function", function(){
         expect(checkRunTwice).to.be.a('function');
@@ -212,10 +231,6 @@ describe("Hand Parser", function() {
 
     });
 
-
-
-
   });
 
 });
-
