@@ -1,6 +1,6 @@
 var Player = function(name, chips){
   this.name = name;
-  // convert to string
+  // force it to string so it has a return pattern, regardless if chips is cash, indicated by $ or just chips
   this.chips = chips + "";
 };
 
@@ -43,6 +43,7 @@ var getHandIdentifier = function(handHistory){
   return handHistory[0];
 };
 
+// accepting only hold'em and no limit
 var getHandStyle = function(handIdentifier){
   if(handIdentifier.indexOf("Hold'em No Limit") !== -1){
     return "Hold'em No Limit";
@@ -195,8 +196,8 @@ var handParser = function(handHistory){
         }
       }
     }
-
-  } else {
+    // commented portuguese code for now, so it reduces complexity while developing new features and refactoring code
+  } /* else {
     // code for portuguese
     // need to create a new function for this
     while( handHistory[row].indexOf('Lugar ') === 0 ){
@@ -286,7 +287,7 @@ var handParser = function(handHistory){
       }
 
     }
-  }
+  } */
 
   return parsedHand;
 }
