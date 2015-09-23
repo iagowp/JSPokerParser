@@ -9,6 +9,8 @@ var checkRunTwice = require('./parser').checkRunTwice;
 var prepareHandHistory = require('./parser').prepareHandHistory;
 var getHandIdentifier = require('./parser').getHandIdentifier;
 var getHandStyle = require('./parser').getHandStyle;
+var Player = require('./parser').Player;
+
 
 describe("Hand Parser", function() {
 
@@ -187,17 +189,33 @@ describe("Hand Parser", function() {
         flop: [],
         flopActions: [],
         turnActions: [],
-        riverActions: []
+        riverActions: [],
+        stacks: []
       });
     });
 
     it("should prepare hand history", function(done){
       expect(prepareHandHistory).to.be.a('function');
-
       fs.readFile('./testHand.txt', function(err, doc){
         if(err) return done(err);
         expect(prepareHandHistory(doc.toString())).to.eql(prepareHandHistory(testHands[6]));
         done();
+      });
+
+    });
+
+    describe("Player constructor", function(){
+      it("should be a function", function(){
+        expect(Player).to.be.a('function');
+      });
+
+      it("should return a Player Object with name and chip properties", function(){
+        var player = new Player("iago", 400);
+        expect(player).to.be.an('object');
+        expect(player).to.eql({
+          name: "iago",
+          chips: "400"
+        });
       });
 
     });
@@ -246,21 +264,3 @@ describe("Hand Parser", function() {
   });
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,9 @@
+var Player = function(name, chips){
+  this.name = name;
+  // convert to string
+  this.chips = chips + "";
+};
+
 var createParsedHand = function(){
   // object with all the relevant info to be displayed
   var parsedHand = {};
@@ -11,6 +17,8 @@ var createParsedHand = function(){
   parsedHand.flopActions = [];
   parsedHand.turnActions = [];
   parsedHand.riverActions = [];
+  parsedHand.stacks = [];
+  // parsedHand.hero = {}; new Player
   return parsedHand;
 };
 
@@ -55,6 +63,9 @@ var config = function(handHistory){
   return prepareHandHistory(handHistory);
 };
 
+
+// TODO: make it oop
+// TODO: get pot
 var handParser = function(handHistory){ 
   handHistory =  config(handHistory);
 
@@ -88,6 +99,7 @@ var handParser = function(handHistory){
       }
       var chips = handHistory[row].substring(numIndex +1, endOfNumber);
 
+      // refactor this into a player object with name and chips
       parsedHand.players.push(["player " + (parsedHand.players.length+1), chips]);
       row++;
     }
@@ -279,7 +291,7 @@ var handParser = function(handHistory){
   return parsedHand;
 }
 
-
+exports.Player = Player;
 exports.createParsedHand = createParsedHand;
 exports.checkRunTwice = checkRunTwice;
 exports.prepareHandHistory = prepareHandHistory;
