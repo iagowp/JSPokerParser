@@ -189,8 +189,7 @@ describe("Hand Parser", function() {
         flop: [],
         flopActions: [],
         turnActions: [],
-        riverActions: [],
-        stacks: []
+        riverActions: []
       });
     });
 

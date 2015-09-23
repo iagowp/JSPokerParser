@@ -17,7 +17,6 @@ var createParsedHand = function(){
   parsedHand.flopActions = [];
   parsedHand.turnActions = [];
   parsedHand.riverActions = [];
-  parsedHand.stacks = [];
   // parsedHand.hero = {}; new Player
   return parsedHand;
 };
@@ -36,7 +35,14 @@ var checkRunTwice = function(parsedHand, handHistory){
 };
 
 var prepareHandHistory = function(handHistory){
-  return handHistory.split("\n");
+  // not being tested
+  if(handHistory.indexOf("\n") === -1) return null;
+  handHistory = handHistory.split("\n");
+  // not being tested
+  if(handHistory[0].indexOf("file") !== -1){
+    handHistory.shift();
+  }
+  return handHistory;
 };
 
 var getHandIdentifier = function(handHistory){
@@ -69,6 +75,9 @@ var config = function(handHistory){
 // TODO: get pot
 var handParser = function(handHistory){ 
   handHistory =  config(handHistory);
+
+  // if handHistory is not a valid input, return null; not being tested
+  if(!handHistory) return null;
 
   var handIdentifier = getHandIdentifier(handHistory);
 
