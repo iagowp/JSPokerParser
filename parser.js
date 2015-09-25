@@ -73,21 +73,30 @@ var config = function(handHistory){
 
 // TODO: make it oop
 // TODO: get pot
+// TODO: make tests for errors
 var handParser = function(handHistory){ 
   handHistory =  config(handHistory);
 
   // if handHistory is not a valid input, return null; not being tested
+  // TODO: better error feedback
   if(!handHistory) return null;
 
   var handIdentifier = getHandIdentifier(handHistory);
 
   // TODO: prepare code for other platforms
-  if(handIdentifier.indexOf('PokerStars') !== -1) parsedHand.platforms = "PS";
+  if(handIdentifier.indexOf('PokerStars') !== -1){
+    parsedHand.platforms = "PS"
+  } else {
+    // if platform is not identified, not being tested
+    return null;
+  }
 
 
   // TODO: prepare for different styles
   // need to improve this part
   parsedHand.gameStyle = getHandStyle(handIdentifier);
+  // need to test error
+  if(!parsedHand.gameStyle) return null;
 
 
   parsedHand.language = handHistory[1].indexOf("Mesa") === 0 ? 'pt' : 'en'
