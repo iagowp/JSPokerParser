@@ -2,12 +2,16 @@ var Player = function(name, chips){
   this.name = name;
   // force it to string so it has a return pattern, regardless if chips is cash, indicated by $ or just chips
   this.chips = chips + "";
+  this.position = "";
+  this.hand = [];
 };
 
 var createParsedHand = function(){
   // object with all the relevant info to be displayed
   var parsedHand = {};
-  parsedHand.platforms = parsedHand.gameStyle = parsedHand.language = parsedHand.turn = parsedHand.river = "";
+  parsedHand.platforms = parsedHand.gameStyle = parsedHand.language = parsedHand.turn = parsedHand.river = parsedHand.pot = "";
+
+  parsedHand.flopPot = parsedHand.turnPot = parsedHand.riverPot = 0
   // todo: refactor players to use objects called players inside the array. object should contain name, chips properties and hand if available
   parsedHand.players = [];
   parsedHand.ownHand = [];
@@ -32,6 +36,16 @@ var checkRunTwice = function(parsedHand, handHistory){
     parsedHand.secondTurn = "";
     parsedHand.secondRiver = "";
   }
+};
+
+// not being tested
+var getPot = function(parsedHand ,handHistory){
+  // var potRegex = /.+collected \$?\w+(\.\w\w)? from (side |main )?pot/g;
+  var potRegex = /Total pot \$?\d+(\.\d\d)? \| Rake \$?\d(\.\d\d)?/ig
+  var match = handHistory.match(potRegex)
+  // not tested
+  if(!match) return null;
+  parsedHand.pot = match[0] +".";
 };
 
 var prepareHandHistory = function(handHistory){
@@ -66,6 +80,8 @@ var config = function(handHistory){
   parsedHand = createParsedHand();
 
   checkRunTwice(parsedHand, handHistory);
+
+  getPot(parsedHand, handHistory);
 
   return prepareHandHistory(handHistory);
 };

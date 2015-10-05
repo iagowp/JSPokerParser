@@ -164,6 +164,9 @@ describe("Hand Parser", function() {
     expect(hand8.secondRiver).to.eql('2d');
   });
 
+  it("should learn the pot", function(){
+    expect(hand8.pots).to.eql('barrao collected $517.51 from pot.');
+  });
   
 
   describe("Initial Configs", function(){
@@ -182,6 +185,10 @@ describe("Hand Parser", function() {
         language: '',
         turn: '',
         river: '',
+        pots: '',
+        flopPot: 0,
+        turnPot: 0,
+        riverPot: 0,
         players: [],
         ownHand: [],
         preFlopActions: [],
@@ -213,7 +220,9 @@ describe("Hand Parser", function() {
         expect(player).to.be.an('object');
         expect(player).to.eql({
           name: "iago",
-          chips: "400"
+          chips: "400",
+          position: '',
+          hand: []
         });
       });
 
