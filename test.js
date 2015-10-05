@@ -165,7 +165,7 @@ describe("Hand Parser", function() {
   });
 
   it("should learn the pot", function(){
-    expect(hand8.pots).to.eql('barrao collected $517.51 from pot.');
+    expect(hand8.pot).to.eql('Total pot $1037.81 | Rake $2.80.');
   });
   
 
@@ -185,7 +185,7 @@ describe("Hand Parser", function() {
         language: '',
         turn: '',
         river: '',
-        pots: '',
+        pot: '',
         flopPot: 0,
         turnPot: 0,
         riverPot: 0,

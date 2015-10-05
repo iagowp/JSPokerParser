@@ -111,11 +111,11 @@ var handParser = function(handHistory){
   // TODO: prepare for different styles
   // need to improve this part
   parsedHand.gameStyle = getHandStyle(handIdentifier);
-  // need to test error
+  // TODO: need to test for a input of an unidentified game style
   if(!parsedHand.gameStyle) return null;
 
 
-  parsedHand.language = handHistory[1].indexOf("Mesa") === 0 ? 'pt' : 'en'
+  parsedHand.language = handHistory[1].indexOf("Hand") !== -1 ? null  : 'en';
 
   var row = 2;
 
