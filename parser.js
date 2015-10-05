@@ -120,22 +120,28 @@ var handParser = function(handHistory){
   var row = 2;
 
   if(parsedHand.language === 'en'){
-
     //prevent rebuys from getting in the way
     while( handHistory[row].indexOf('re-buys and receives') !== -1 ){
       row++;
     }
 
+    var player;
+    var chips;
     while( handHistory[row].indexOf('Seat ') === 0 ){
+      // TODO: Get chips with a regex the same regex used to get the player
       var endOfNumber = handHistory[row].indexOf(' in chips');
       var numIndex = endOfNumber;
       while( handHistory[row][numIndex] !== '('){
         numIndex--;
       }
-      var chips = handHistory[row].substring(numIndex +1, endOfNumber);
+      chips = handHistory[row].substring(numIndex +1, endOfNumber);
 
+      var playerRegex = /Seat \w\: (.+) \(\$?\w+/;
+      playerName = playerRegex.exec(handHistory[row])[1];
+
+      player = new Player(playerName, chips);
       // refactor this into a player object with name and chips
-      parsedHand.players.push(["player " + (parsedHand.players.length+1), chips]);
+      parsedHand.players.push(player);
       row++;
     }
 

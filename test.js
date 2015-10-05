@@ -64,12 +64,12 @@ describe("Hand Parser", function() {
   it("should learn the ammount of chips players have" ,function(){
     // expect(hand1.players[0][1]).to.equal(500);
     // expect(hand2.players[0][1]).to.equal(1140);
-    expect(hand3.players[0][1]).to.equal('$574.70');
-    expect(hand4.players[0][1]).to.equal('3000');
-    expect(hand5.players[0][1]).to.equal('3370');
-    expect(hand6.players[5][1]).to.equal('$105.05');
-    expect(hand7.players[2][1]).to.equal('$200');
-    expect(hand8.players[2][1]).to.equal('$513.38');
+    expect(hand3.players[0].chips).to.equal('$574.70');
+    expect(hand4.players[0].chips).to.equal('3000');
+    expect(hand5.players[0].chips).to.equal('3370');
+    expect(hand6.players[5].chips).to.equal('$105.05');
+    expect(hand7.players[2].chips).to.equal('$200');
+    expect(hand8.players[2].chips).to.equal('$513.38');
   });
 
   it("should learn the guy's hand if its available", function(){
