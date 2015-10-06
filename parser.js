@@ -6,10 +6,28 @@ var Player = function(name, chips){
   this.hand = [];
 };
 
+var TABLEMAP = ['BB', 'SB', 'BTN', 'CO', 'HJ', 'MP+1', 'MP', 'UTG+1', 'UTG'];
+
+// poorly tested
+var mapPlayers = function(players, bigBlindName){
+  var i = 0;
+  while(players[i].name !== bigBlindName){
+    i++;
+  }
+
+  for(var j = 0; j < players.length; j++){
+    // send i to the end of the array
+    if(i < 0) i = players.length-1;
+    players[i].position = TABLEMAP[j];
+    i--;
+  }
+
+};
+
 var createParsedHand = function(){
   // object with all the relevant info to be displayed
   var parsedHand = {};
-  parsedHand.platforms = parsedHand.gameStyle = parsedHand.language = parsedHand.turn = parsedHand.river = parsedHand.pot = "";
+  parsedHand.platforms = parsedHand.gameStyle = parsedHand.language = parsedHand.turn = parsedHand.river = parsedHand.pot = parsedHand.ante = parsedHand.smallBlind = parsedHand.bigBlind = "";
 
   parsedHand.flopPot = parsedHand.turnPot = parsedHand.riverPot = 0
   // todo: refactor players to use objects called players inside the array. object should contain name, chips properties and hand if available
@@ -21,7 +39,7 @@ var createParsedHand = function(){
   parsedHand.flopActions = [];
   parsedHand.turnActions = [];
   parsedHand.riverActions = [];
-  // parsedHand.hero = {}; new Player
+  parsedHand.hero = {};
   return parsedHand;
 };
 
@@ -140,14 +158,21 @@ var handParser = function(handHistory){
       playerName = playerRegex.exec(handHistory[row])[1];
 
       player = new Player(playerName, chips);
-      // refactor this into a player object with name and chips
       parsedHand.players.push(player);
       row++;
     }
 
+
     //advance to the hand row, needs to save actions
     while( handHistory[row].indexOf(" ") !== 0 && handHistory[row].indexOf("*** ") !== 0){
-      parsedHand.preFlopActions.push(handHistory[row]);
+      // ignores ante
+      if( handHistory[row].indexOf("posts the ante") === -1){
+        parsedHand.preFlopActions.push(handHistory[row]);
+      } else if(!parsedHand.ante) {
+        var anteRegex = /posts the ante (\w+)/i;
+        parsedHand.ante = anteRegex.exec(handHistory[row])[1];
+        console.log(parsedHand.ante)
+      }
       row++;
     }
 

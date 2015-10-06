@@ -322,3 +322,60 @@ exports.testHands.push("PokerStars Hand #139844690223:  Hold'em No Limit ($2.50/
 "Seat 5: mynameiskarl folded before Flop (didn't bet)\n" +
 "Seat 6: u3meha folded before Flop (didn't bet)");
 
+exports.testHands.push("> PokerStars Hand #141202470634: Tournament #1279526054, $2000+$100 USD Hold'em No Limit - Level XII (150/300) - 2015/09/22 18:14:24 BRT [2015/09/22 17:14:24 ET]\n" +
+"Table '1279526054 82' 9-max Seat #9 is the button\n" +
+"Seat 1: T-Macha (18511 in chips) \n" +
+"Seat 2: wiper222 (8037 in chips) \n" +
+"Seat 3: roo_400 (6766 in chips) \n" +
+"Seat 4: TMoney0209 (9897 in chips) \n" +
+"Seat 5: IneedMassari (9538 in chips) \n" +
+"Seat 6: lipe piv (10566 in chips) \n" +
+"Seat 7: Secret_M0d3 (15869 in chips) \n" +
+"Seat 8: KidCardiff6 (5990 in chips) \n" +
+"Seat 9: JohnPaiste (11640 in chips) \n" +
+"T-Macha: posts the ante 40\n" +
+"wiper222: posts the ante 40\n" +
+"roo_400: posts the ante 40\n" +
+"TMoney0209: posts the ante 40\n" +
+"IneedMassari: posts the ante 40\n" +
+"lipe piv: posts the ante 40\n" +
+"Secret_M0d3: posts the ante 40\n" +
+"KidCardiff6: posts the ante 40\n" +
+"JohnPaiste: posts the ante 40\n" +
+"T-Macha: posts small blind 150\n" +
+"wiper222: posts big blind 300\n" +
+" HOLE CARDS \n" +
+"Dealt to lipe piv [Jc Js]\n" +
+"roo_400: folds \n" +
+"TMoney0209: raises 327 to 627\n" +
+"IneedMassari: calls 627\n" +
+"lipe piv: calls 627\n" +
+"Secret_M0d3: folds \n" +
+"KidCardiff6: folds \n" +
+"JohnPaiste: raises 2813 to 3440\n" +
+"T-Macha: folds \n" +
+"wiper222: folds \n" +
+"TMoney0209: folds \n" +
+"IneedMassari: folds \n" +
+"lipe piv: raises 7086 to 10526 and is all-in\n" +
+"JohnPaiste: calls 7086\n" +
+" FLOP  [Ah Ks 9h]\n" +
+" TURN  [Ah Ks 9h] [9c]\n" +
+" RIVER  [Ah Ks 9h 9c] [8d]\n" +
+" SHOW DOWN \n" +
+"lipe piv: shows [Jc Js] (two pair, Jacks and Nines)\n" +
+"JohnPaiste: shows [Ac Kc] (two pair, Aces and Kings)\n" +
+"JohnPaiste collected 23116 from pot\n" +
+"lipe piv finished the tournament in 771st place\n" +
+" SUMMARY \n" +
+"Total pot 23116 | Rake 0 \n" +
+"Board [Ah Ks 9h 9c 8d]\n" +
+"Seat 1: T-Macha (small blind) folded before Flop\n" +
+"Seat 2: wiper222 (big blind) folded before Flop\n" +
+"Seat 3: roo_400 folded before Flop (didn't bet)\n" +
+"Seat 4: TMoney0209 folded before Flop\n" +
+"Seat 5: IneedMassari folded before Flop\n" +
+"Seat 6: lipe piv showed [Jc Js] and lost with two pair, Jacks and Nines\n" +
+"Seat 7: Secret_M0d3 folded before Flop (didn't bet)\n" +
+"Seat 8: KidCardiff6 folded before Flop (didn't bet)\n" +
+"Seat 9: JohnPaiste (button) showed [Ac Kc] and won (23116) with two pair, Aces and Kings");

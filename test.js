@@ -27,6 +27,8 @@ describe("Hand Parser", function() {
   // run it twice
   var hand8 = handParser(testHands[7]);
 
+  var hand9 = handParser(testHands[8]);
+
   it("should learn where the hand came from" ,function(){
     // expect(hand1.platforms === "PS").to.be.true;
     expect(hand3.platforms === "PS").to.be.true;
@@ -70,6 +72,14 @@ describe("Hand Parser", function() {
     expect(hand6.players[5].chips).to.equal('$105.05');
     expect(hand7.players[2].chips).to.equal('$200');
     expect(hand8.players[2].chips).to.equal('$513.38');
+  });
+
+  it("should learn the ante", function(){
+    expect(hand9.ante).to.equal('40');
+  });
+
+  it("should learn players positions", function(){
+    expect(hand6.players[2].position).to.equal("BB");
   });
 
   it("should learn the guy's hand if its available", function(){
@@ -186,6 +196,9 @@ describe("Hand Parser", function() {
         turn: '',
         river: '',
         pot: '',
+        ante: '',
+        smallBlind: '',
+        bigBlind: '',
         flopPot: 0,
         turnPot: 0,
         riverPot: 0,
@@ -196,7 +209,8 @@ describe("Hand Parser", function() {
         flop: [],
         flopActions: [],
         turnActions: [],
-        riverActions: []
+        riverActions: [],
+        hero: {}
       });
     });
 
