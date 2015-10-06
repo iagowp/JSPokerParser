@@ -80,6 +80,7 @@ describe("Hand Parser", function() {
 
   it("should learn players positions", function(){
     expect(hand6.players[2].position).to.equal("BB");
+    expect(hand9.players[2].position).to.equal("UTG");
   });
 
   it("should learn the guy's hand if its available", function(){

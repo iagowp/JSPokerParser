@@ -322,6 +322,7 @@ exports.testHands.push("PokerStars Hand #139844690223:  Hold'em No Limit ($2.50/
 "Seat 5: mynameiskarl folded before Flop (didn't bet)\n" +
 "Seat 6: u3meha folded before Flop (didn't bet)");
 
+//pokerstars, holdem, tournament, 9 players, english hand available, hand 9
 exports.testHands.push("> PokerStars Hand #141202470634: Tournament #1279526054, $2000+$100 USD Hold'em No Limit - Level XII (150/300) - 2015/09/22 18:14:24 BRT [2015/09/22 17:14:24 ET]\n" +
 "Table '1279526054 82' 9-max Seat #9 is the button\n" +
 "Seat 1: T-Macha (18511 in chips) \n" +

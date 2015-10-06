@@ -1,3 +1,6 @@
+var parsedHand;
+var bigBlindName;
+
 var Player = function(name, chips){
   this.name = name;
   // force it to string so it has a return pattern, regardless if chips is cash, indicated by $ or just chips
@@ -66,9 +69,14 @@ var getPot = function(parsedHand ,handHistory){
   parsedHand.pot = match[0] +".";
 };
 
+
 var prepareHandHistory = function(handHistory){
   // not being tested
   if(handHistory.indexOf("\n") === -1) return null;
+  //not being tested
+  var bigBlindRegex = /(.+)\: posts big blind/g
+  bigBlindName = bigBlindRegex.exec(handHistory)[1];
+
   handHistory = handHistory.split("\n");
   // not being tested
   if(handHistory[0].indexOf("file") !== -1){
@@ -92,7 +100,6 @@ var getHandStyle = function(handIdentifier){
   }
 };
 
-var parsedHand;
 
 var config = function(handHistory){
   parsedHand = createParsedHand();
@@ -162,6 +169,8 @@ var handParser = function(handHistory){
       row++;
     }
 
+    mapPlayers(parsedHand.players, bigBlindName);
+
 
     //advance to the hand row, needs to save actions
     while( handHistory[row].indexOf(" ") !== 0 && handHistory[row].indexOf("*** ") !== 0){
@@ -171,7 +180,6 @@ var handParser = function(handHistory){
       } else if(!parsedHand.ante) {
         var anteRegex = /posts the ante (\w+)/i;
         parsedHand.ante = anteRegex.exec(handHistory[row])[1];
-        console.log(parsedHand.ante)
       }
       row++;
     }
