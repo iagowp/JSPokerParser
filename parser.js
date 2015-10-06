@@ -7,6 +7,7 @@ var Player = function(name, chips){
   this.chips = chips + "";
   this.position = "";
   this.hand = [];
+  this.invested = 0;
 };
 
 var TABLEMAP = ['BB', 'SB', 'BTN', 'CO', 'HJ', 'MP+1', 'MP', 'UTG+1', 'UTG'];
@@ -24,13 +25,12 @@ var mapPlayers = function(players, bigBlindName){
     players[i].position = TABLEMAP[j];
     i--;
   }
-
 };
 
 var createParsedHand = function(){
   // object with all the relevant info to be displayed
   var parsedHand = {};
-  parsedHand.platforms = parsedHand.gameStyle = parsedHand.language = parsedHand.turn = parsedHand.river = parsedHand.pot = parsedHand.ante = parsedHand.smallBlind = parsedHand.bigBlind = "";
+  parsedHand.platforms = parsedHand.gameStyle = parsedHand.language = parsedHand.turn = parsedHand.river = parsedHand.pot = parsedHand.ante = parsedHand.blinds = "";
 
   parsedHand.flopPot = parsedHand.turnPot = parsedHand.riverPot = 0
   // todo: refactor players to use objects called players inside the array. object should contain name, chips properties and hand if available
@@ -100,6 +100,12 @@ var getHandStyle = function(handIdentifier){
   }
 };
 
+// not tested
+var getBlinds = function(handIdentifier){
+  var blindsRegex = /\((.+)\)/;
+  parsedHand.blinds = blindsRegex.exec(handIdentifier)[1];
+};
+
 
 var config = function(handHistory){
   parsedHand = createParsedHand();
@@ -118,6 +124,8 @@ var config = function(handHistory){
 var handParser = function(handHistory){ 
   handHistory =  config(handHistory);
 
+  var partialPot = 0;
+
   // if handHistory is not a valid input, return null; not being tested
   // TODO: better error feedback
   if(!handHistory) return null;
@@ -131,6 +139,8 @@ var handParser = function(handHistory){
     // if platform is not identified, not being tested
     return null;
   }
+
+  getBlinds(handIdentifier);
 
 
   // TODO: prepare for different styles
@@ -180,6 +190,7 @@ var handParser = function(handHistory){
       } else if(!parsedHand.ante) {
         var anteRegex = /posts the ante (\w+)/i;
         parsedHand.ante = anteRegex.exec(handHistory[row])[1];
+        partialPot = parseInt(parsedHand.ante, 10) * parsedHand.players.length;
       }
       row++;
     }

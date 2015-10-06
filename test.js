@@ -198,8 +198,7 @@ describe("Hand Parser", function() {
         river: '',
         pot: '',
         ante: '',
-        smallBlind: '',
-        bigBlind: '',
+        blinds: '',
         flopPot: 0,
         turnPot: 0,
         riverPot: 0,
@@ -237,7 +236,8 @@ describe("Hand Parser", function() {
           name: "iago",
           chips: "400",
           position: '',
-          hand: []
+          hand: [],
+          invested: 0
         });
       });
 
