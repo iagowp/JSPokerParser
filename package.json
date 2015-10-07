@@ -1,5 +1,5 @@
 {
-  "name": "pokerParser",
+  "name": "poker-parser",
   "version": "1.0.0",
   "description": "Poker Hand History Parser",
   "main": "parser.js",
