@@ -117,6 +117,17 @@ var config = function(handHistory){
   return prepareHandHistory(handHistory);
 };
 
+//
+var findHero = function(players, text){
+  var hero = text.substring(9, text.length-1);
+  for(var i = 0; i < players.length; i++){
+    if(players[i].name === hero){
+      parsedHand.hero = players[i];
+      break;
+    }
+  }
+};
+
 
 // TODO: make it oop
 // TODO: get pot
@@ -198,6 +209,9 @@ var handParser = function(handHistory){
     // treating for when no hand is initially known
     if(handHistory[row+1].indexOf('Dealt to') === 0){
       var ownHand = handHistory[++row].split('[');
+
+      findHero(parsedHand.players, ownHand[0]);
+
       if(parsedHand.gameStyle == 'Omaha Pot Limit'){
         parsedHand.ownHand = ownHand[ownHand.length-1].substring(0, 11).split(" ");
       } else {
