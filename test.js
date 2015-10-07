@@ -181,7 +181,6 @@ describe("Hand Parser", function() {
   
 
   describe("Initial Configs", function(){
-
     xit("should initialize config", function(){
       // mock functions and test if they were invoked
     });
@@ -284,6 +283,14 @@ describe("Hand Parser", function() {
       expect();
     });
 
+  });
+
+  describe("Street Pots", function(){
+    it("should get the pot value before the flop", function(){
+      expect(hand3.flopPot).to.eql(90);
+      expect(hand6.flopPot).to.eql(3);
+      expect(hand8.flopPot).to.eql(1037.81);
+    });
   });
 
 });

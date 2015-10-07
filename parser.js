@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 var parsedHand;
 var bigBlindName;
 
@@ -117,7 +119,7 @@ var config = function(handHistory){
   return prepareHandHistory(handHistory);
 };
 
-//
+// not tested
 var findHero = function(players, text){
   var hero = text.substring(9, text.length-1);
   for(var i = 0; i < players.length; i++){
@@ -128,9 +130,73 @@ var findHero = function(players, text){
   }
 };
 
+// go throgh all actions, and find out the value of the pot
+var updatePot = function(players, actions, pot){
+  // todo: refactor handle functions into a single function changing regex depending on a argument with the action
+  var handlePosts = function(text){
+    var postsRegex = /blind \$?(\d+\.?\d?\d?)/;
+    var textvalue = postsRegex.exec(text)[1];
+    return parseFloat(textvalue, 10);
+  };
+
+  var handleCalls = function(text){
+    var callsRegex = /calls \$?(\d+\.?\d?\d?)/;
+    var textvalue = callsRegex.exec(text)[1];
+    return parseFloat(textvalue, 10);
+  };
+
+  var handleRaises = function(text){
+    var raisesRegex = /\d to \$?(\d+\.?\d?\d?)/;
+    var textvalue = raisesRegex.exec(text)[1];
+    return parseFloat(textvalue, 10);
+  };
+
+  var handleBets = function(text){
+    var betsRegex = /bets \$?(\d+\.?\d?\d?)/;
+    var textvalue = betsRegex.exec(text)[1];
+    return parseFloat(textvalue, 10);
+  };
+
+  // sort by the name of the player, not loosing original order of actions from same player
+  var orderedActions = _.sortBy(actions, function(action){
+    return action.split(": ")[0];
+  });
+
+  var currentPlayer = orderedActions[0].split(": ")[0];
+  var currentSum = 0;
+
+
+  _.forEach(orderedActions, function(val){
+    if(val.indexOf('folds') !== -1) return null;
+
+    if(val.split(": ")[0] !== currentPlayer){
+      pot += currentSum;
+      // todo: update the player with the ammount invested in the pot so far
+      currentPlayer = val.split(": ")[0];
+      currentSum = 0;
+    }
+
+    if(val.indexOf('posts') !== -1) {
+      currentSum += handlePosts(val);
+    } else if(val.indexOf('calls') !== -1) {
+      currentSum += handleCalls(val);
+    } else if(val.indexOf('raises') !== -1) {
+      // not += because its easier to just get the final value its raised to
+      currentSum = handleRaises(val);
+    } else if(val.indexOf('bets') !== -1){
+      currentSum += handleBets(val);
+    }
+
+  });
+
+  pot += currentSum;
+
+  return pot;
+};
+
 
 // TODO: make it oop
-// TODO: get pot
+// TODO: Ignore 'uncalled bet' and 'collected from pot' on actions
 // TODO: make tests for errors
 var handParser = function(handHistory){ 
   handHistory =  config(handHistory);
@@ -227,6 +293,9 @@ var handParser = function(handHistory){
       row++;
     }
 
+    // todo: test this
+    parsedHand.flopPot = updatePot(parsedHand.players, parsedHand.preFlopActions, partialPot)
+
     //check if there's a FLOP
     if(handHistory[row].indexOf("FLOP") !== -1){
       //get the FLOP cards
@@ -241,6 +310,11 @@ var handParser = function(handHistory){
         row++;
       }
 
+      // todo: test this
+      if(parsedHand.flopActions.length){
+        parsedHand.turnPot = updatePot(parsedHand.players, parsedHand.flopActions, parsedHand.flopPot);
+      }
+
       // check if there's a TURN
       if( handHistory[row].indexOf("TURN") !== -1){
         //get the TURN card
@@ -253,6 +327,11 @@ var handParser = function(handHistory){
         while( handHistory[row].indexOf(" ") !== 0 && handHistory[row].indexOf("*** ") !== 0 ){
           parsedHand.turnActions.push(handHistory[row]);
           row++;
+        }
+
+        // todo: test this
+        if(parsedHand.turnActions.length){
+          parsedHand.riverPot = updatePot(parsedHand.players, parsedHand.turnActions, parsedHand.turnPot);
         }
 
         if( handHistory[row].indexOf("RIVER") !== -1){

@@ -2,7 +2,7 @@
   "name": "JSPokerParser",
   "version": "1.0.0",
   "description": "Poker Hand History Parser",
-  "main": "test.js",
+  "main": "parser.js",
   "scripts": {
     "test": "mocha"
   },
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/iagowp/JSPokerParser",
   "dependencies": {
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "underscore": "^1.8.3"
   }
 }
