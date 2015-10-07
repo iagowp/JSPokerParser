@@ -295,6 +295,7 @@ var handParser = function(handHistory){
 
     // todo: test this
     parsedHand.flopPot = updatePot(parsedHand.players, parsedHand.preFlopActions, partialPot)
+    parsedHand.riverPot = parsedHand.turnPot = parsedHand.flopPot
 
     //check if there's a FLOP
     if(handHistory[row].indexOf("FLOP") !== -1){
@@ -312,7 +313,7 @@ var handParser = function(handHistory){
 
       // todo: test this
       if(parsedHand.flopActions.length){
-        parsedHand.turnPot = updatePot(parsedHand.players, parsedHand.flopActions, parsedHand.flopPot);
+        parsedHand.riverPot = parsedHand.turnPot = updatePot(parsedHand.players, parsedHand.flopActions, parsedHand.flopPot);
       }
 
       // check if there's a TURN

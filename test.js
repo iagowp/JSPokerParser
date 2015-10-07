@@ -291,6 +291,21 @@ describe("Hand Parser", function() {
       expect(hand6.flopPot).to.eql(3);
       expect(hand8.flopPot).to.eql(1037.81);
     });
+
+    it("should get the pot value before the turn", function(){
+      expect(hand3.turnPot).to.eql(330)
+      expect(hand4.turnPot).to.eql(70);
+      expect(hand7.turnPot).to.eql(220);
+    });
+
+    it("should get the pot value before the river", function(){
+      // need to deal with uncalled bets to handle this one
+      // expect(hand3.riverPot).to.eql(1223.70);
+      expect(hand4.riverPot).to.eql(70);
+      expect(hand5.riverPot).to.eql(234);
+      expect(hand7.riverPot).to.eql(220);
+    });
+
   });
 
 });
