@@ -380,3 +380,48 @@ exports.testHands.push("> PokerStars Hand #141202470634: Tournament #1279526054,
 "Seat 7: Secret_M0d3 folded before Flop (didn't bet)\n" +
 "Seat 8: KidCardiff6 folded before Flop (didn't bet)\n" +
 "Seat 9: JohnPaiste (button) showed [Ac Kc] and won (23116) with two pair, Aces and Kings");
+
+
+//pokerstars, omaha, cash, 6 players, english, hand available, hand 10
+exports.testHands.push("File: HH20151019 Diotima #18 - $1-$2 - USD Pot Limit Omaha.txt\n" +
+"PokerStars Zoom Hand #142455834751:  Omaha Pot Limit ($1/$2) - 2015/10/19 16:18:19 BRT [2015/10/19 14:18:19 ET]\n" +
+"Table 'Diotima' 6-max Seat #1 is the button\n" +
+"Seat 1: Bellebone ($200 in chips) \n" +
+"Seat 2: arnie_137 ($490.85 in chips) \n" +
+"Seat 3: BraisedBeef ($609.64 in chips) \n" +
+"Seat 4: JUST-P-77 ($240.48 in chips) \n" +
+"Seat 5: BcexnopByH ($200 in chips) \n" +
+"Seat 6: PODREKAMER77 ($488.46 in chips) \n" +
+"arnie_137: posts small blind $1\n" +
+"BraisedBeef: posts big blind $2\n" +
+" HOLE CARDS \n" +
+"Dealt to Bellebone [9c 7c 9s Jc]\n" +
+"JUST-P-77: folds \n" +
+"BcexnopByH: folds \n" +
+"PODREKAMER77: folds \n" +
+"Bellebone: raises $5 to $7\n" +
+"arnie_137: folds \n" +
+"BraisedBeef: calls $5\n" +
+" FLOP  [3d 9h 7s]\n" +
+"BraisedBeef: checks \n" +
+"Bellebone: bets $10\n" +
+"BraisedBeef: calls $10\n" +
+" TURN  [3d 9h 7s] [4d]\n" +
+"BraisedBeef: checks \n" +
+"Bellebone: bets $20\n" +
+"BraisedBeef: calls $20\n" +
+" RIVER  [3d 9h 7s 4d] [Td]\n" +
+"BraisedBeef: bets $36.10\n" +
+"Bellebone: folds \n" +
+"Uncalled bet ($36.10) returned to BraisedBeef\n" +
+"BraisedBeef collected $72.20 from pot\n" +
+"BraisedBeef: doesn't show hand \n" +
+" SUMMARY \n" +
+"Total pot $75 | Rake $2.80 \n" +
+"Board [3d 9h 7s 4d Td]\n" +
+"Seat 1: Bellebone (button) folded on the River\n" +
+"Seat 2: arnie_137 (small blind) folded before Flop\n" +
+"Seat 3: BraisedBeef (big blind) collected ($72.20)\n" +
+"Seat 4: JUST-P-77 folded before Flop (didn't bet)\n" +
+"Seat 5: BcexnopByH folded before Flop (didn't bet)\n" +
+"Seat 6: PODREKAMER77 folded before Flop (didn't bet)");

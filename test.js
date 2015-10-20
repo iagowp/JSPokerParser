@@ -23,6 +23,8 @@ describe("Hand Parser", function() {
   // omaha
   var hand6 = handParser(testHands[5]);
   var hand7 = handParser(testHands[6]);
+  var hand10 = handParser(testHands[9]);
+  console.log(hand10);
 
   // run it twice
   var hand8 = handParser(testHands[7]);

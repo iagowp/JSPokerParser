@@ -81,7 +81,7 @@ var prepareHandHistory = function(handHistory){
 
   handHistory = handHistory.split("\n");
   // not being tested
-  if(handHistory[0].indexOf("file") !== -1){
+  if(handHistory[0].indexOf("file") !== -1 || handHistory[0].indexOf("File") !== -1){
     handHistory.shift();
   }
   return handHistory;
